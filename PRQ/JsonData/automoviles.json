@@ -1,0 +1,7 @@
+[
+  { "Id": 1, "Fabricante": "Toyota",    "Color": "Blanco",  "Anio": 2020, "Tipo": "sedan" },
+  { "Id": 2, "Fabricante": "Honda",     "Color": "Negro",   "Anio": 2019, "Tipo": "sedan" },
+  { "Id": 3, "Fabricante": "Ford",      "Color": "Rojo",    "Anio": 2021, "Tipo": "4x4"   },
+  { "Id": 4, "Fabricante": "Yamaha",    "Color": "Azul",    "Anio": 2022, "Tipo": "moto"  },
+  { "Id": 5, "Fabricante": "Chevrolet", "Color": "Gris",    "Anio": 2018, "Tipo": "4x4"   }
+]
