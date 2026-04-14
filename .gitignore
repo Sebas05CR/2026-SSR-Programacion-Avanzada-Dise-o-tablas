@@ -1,0 +1,15 @@
+## Build outputs
+bin/
+obj/
+
+## VS Code
+.vscode/
+
+## User-specific files
+*.user
+*.suo
+.vs/
+
+## NuGet
+*.nupkg
+packages/

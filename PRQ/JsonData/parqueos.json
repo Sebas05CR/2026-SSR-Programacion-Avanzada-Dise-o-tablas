@@ -1,5 +1,0 @@
-[
-  { "Id": 1, "Provincia": "San José", "Nombre": "Parqueo Central", "PrecioPorHora": 500.00 },
-  { "Id": 2, "Provincia": "Heredia",  "Nombre": "Parqueo Norte",   "PrecioPorHora": 400.00 },
-  { "Id": 3, "Provincia": "Alajuela", "Nombre": "Parqueo Sur",     "PrecioPorHora": 350.00 }
-]
