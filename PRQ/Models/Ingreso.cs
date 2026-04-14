@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-
 namespace PRQ.Models;
 
 public class Ingreso
@@ -11,10 +9,8 @@ public class Ingreso
     public DateTime? FechaSalida  { get; set; }
 
     // ── Navigation properties ───────────────────────────────────────
-    [JsonIgnore]
     public Parqueo?   Parqueo   { get; set; }
 
-    [JsonIgnore]
     public Automovil? Automovil { get; set; }
 
     // ── Computed properties (null when FechaSalida is null) ─────────
