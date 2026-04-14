@@ -1,0 +1,8 @@
+[
+  { "Id": 1, "Nombre": "Parqueo Central",    "Provincia": "San José",  "PrecioPorHora": 400.00 },
+  { "Id": 2, "Nombre": "Parqueo Norte",      "Provincia": "Heredia",   "PrecioPorHora": 350.00 },
+  { "Id": 3, "Nombre": "Parqueo Sur",        "Provincia": "Heredia",   "PrecioPorHora": 375.00 },
+  { "Id": 4, "Nombre": "Parqueo Express",    "Provincia": "Alajuela",  "PrecioPorHora": 450.00 },
+  { "Id": 5, "Nombre": "Parqueo del Parque", "Provincia": "Cartago",   "PrecioPorHora": 300.00 },
+  { "Id": 6, "Nombre": "Parqueo Americano",  "Provincia": "San José",  "PrecioPorHora": 500.00 }
+]
