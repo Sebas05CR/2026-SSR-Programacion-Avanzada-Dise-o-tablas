@@ -19,6 +19,7 @@ builder.Services.AddDbContext<PRQDbContext>(options =>
 
 // ── Repositories ──────────────────────────────────────────────────────────
 builder.Services.AddScoped<IAutomovilRepository, AutomovilDbRepository>();
+builder.Services.AddScoped<IParqueoRepository, ParqueoDbRepository>();
 
 // ── Pipeline ──────────────────────────────────────────────────────────────
 var app = builder.Build();
