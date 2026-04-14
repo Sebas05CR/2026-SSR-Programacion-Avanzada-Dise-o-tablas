@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PRQ.Data;
+using PRQ.Interfaces;
+using PRQ.Repositories.DB;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,9 @@ string connStr = Environment.GetEnvironmentVariable("PRQ_CONN")
 
 builder.Services.AddDbContext<PRQDbContext>(options =>
     options.UseSqlServer(connStr));
+
+// ── Repositories ──────────────────────────────────────────────────────────
+builder.Services.AddScoped<IAutomovilRepository, AutomovilDbRepository>();
 
 // ── Pipeline ──────────────────────────────────────────────────────────────
 var app = builder.Build();
