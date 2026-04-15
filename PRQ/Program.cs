@@ -13,7 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
 
-string defaultSource = Environment.GetEnvironmentVariable("PRQ_SOURCE") ?? "DB";
+string defaultSource = "DB";
 string connStr = Environment.GetEnvironmentVariable("PRQ_CONN")
     ?? throw new InvalidOperationException(
         "Connection string not found. Set the PRQ_CONN environment variable before running.");
@@ -44,6 +44,9 @@ builder.Services.AddSingleton(_ => new IngresoJsonRepository(ingresosPath, autom
 builder.Services.AddScoped<IAutomovilRepository, RoutedAutomovilRepository>();
 builder.Services.AddScoped<IParqueoRepository, RoutedParqueoRepository>();
 builder.Services.AddScoped<IIngresoRepository, RoutedIngresoRepository>();
+
+Console.WriteLine("API REAL EJECUTANDOSE DESDE AQUI");
+Console.WriteLine($"PRQ_SOURCE = {defaultSource}");
 
 // ── Pipeline ──────────────────────────────────────────────────────────────
 var app = builder.Build();

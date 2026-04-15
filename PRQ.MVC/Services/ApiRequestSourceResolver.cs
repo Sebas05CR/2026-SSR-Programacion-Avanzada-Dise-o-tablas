@@ -19,7 +19,7 @@ public class ApiRequestSourceResolver(
         var endpoint = httpContextAccessor.HttpContext?.GetEndpoint();
         var featureAttribute = endpoint?.Metadata.GetMetadata<ApiSourceFeatureAttribute>();
 
-        var source = routingOptions.DefaultSource;
+        var source = "DB";
         if (featureAttribute is not null &&
             routingOptions.Features.TryGetValue(featureAttribute.FeatureName, out var configuredSource) &&
             !string.IsNullOrWhiteSpace(configuredSource))
