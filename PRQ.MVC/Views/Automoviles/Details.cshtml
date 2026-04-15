@@ -1,0 +1,31 @@
+@model AutomovilViewModel
+
+@{
+    ViewData["Title"] = "Detalle de automovil";
+}
+
+<section class="panel">
+    <h1>Detalle de automovil</h1>
+
+    <dl>
+        <dt>Id</dt>
+        <dd>@Model.Id</dd>
+
+        <dt>Fabricante</dt>
+        <dd>@Model.Fabricante</dd>
+
+        <dt>Color</dt>
+        <dd>@Model.Color</dd>
+
+        <dt>Anio</dt>
+        <dd>@Model.Anio</dd>
+
+        <dt>Tipo</dt>
+        <dd>@Model.Tipo</dd>
+    </dl>
+
+    <div class="actions" style="margin-top: 1.25rem;">
+        <a class="btn" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        <a class="btn btn-secondary" asp-action="Index">Back to list</a>
+    </div>
+</section>

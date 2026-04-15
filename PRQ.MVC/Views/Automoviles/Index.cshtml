@@ -1,0 +1,66 @@
+@model IEnumerable<AutomovilViewModel>
+
+@{
+    ViewData["Title"] = "Automoviles";
+}
+
+<section class="panel">
+    <div class="actions" style="justify-content: space-between; margin-bottom: 1rem;">
+        <div>
+            <h1 style="margin: 0;">Automoviles</h1>
+            <p style="margin: 0.4rem 0 0;">Consulta, filtra y administra los automoviles registrados.</p>
+        </div>
+        <a class="btn" asp-action="Create">Crear nuevo</a>
+    </div>
+
+    <form asp-action="Index" method="get" class="filter-form">
+        <div>
+            <label for="anioInferior">Anio inferior</label>
+            <input id="anioInferior" name="anioInferior" type="number" value="@ViewBag.AnioInferior" />
+        </div>
+        <div>
+            <label for="anioSuperior">Anio superior</label>
+            <input id="anioSuperior" name="anioSuperior" type="number" value="@ViewBag.AnioSuperior" />
+        </div>
+        <div>
+            <button class="btn" type="submit">Filtrar</button>
+        </div>
+        <div>
+            <a class="btn btn-secondary" asp-action="Index">Limpiar</a>
+        </div>
+    </form>
+
+    <div asp-validation-summary="All" class="text-danger" style="margin-top: 1rem;"></div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fabricante</th>
+                <th>Color</th>
+                <th>Anio</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Fabricante</td>
+                <td>@item.Color</td>
+                <td>@item.Anio</td>
+                <td>@item.Tipo</td>
+                <td>
+                    <div class="actions">
+                        <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <a class="btn" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</section>

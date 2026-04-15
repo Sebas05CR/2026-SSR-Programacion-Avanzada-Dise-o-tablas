@@ -1,0 +1,46 @@
+@model AutomovilViewModel
+
+@{
+    ViewData["Title"] = "Editar automovil";
+}
+
+<section class="panel">
+    <h1>Editar automovil</h1>
+
+    <form asp-action="Edit" method="post">
+        @Html.AntiForgeryToken()
+        <input asp-for="Id" type="hidden" />
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-grid">
+            <div>
+                <label asp-for="Fabricante"></label>
+                <input asp-for="Fabricante" />
+                <span asp-validation-for="Fabricante" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="Color"></label>
+                <input asp-for="Color" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="Anio"></label>
+                <input asp-for="Anio" type="number" />
+                <span asp-validation-for="Anio" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label asp-for="Tipo"></label>
+                <input asp-for="Tipo" />
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="actions" style="margin-top: 1.25rem;">
+            <button class="btn" type="submit">Actualizar</button>
+            <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+        </div>
+    </form>
+</section>

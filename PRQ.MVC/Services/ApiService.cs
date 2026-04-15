@@ -44,7 +44,9 @@ public class ApiService(HttpClient httpClient) : IApiService
 
         var content = await response.Content.ReadAsStringAsync();
         throw new HttpRequestException(
-            $"API request failed with status code {(int)response.StatusCode}: {content}");
+            $"API request failed with status code {(int)response.StatusCode}: {content}",
+            null,
+            response.StatusCode);
     }
 
     private static async Task<T?> DeserializeResponseAsync<T>(HttpResponseMessage response)

@@ -20,7 +20,7 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Automoviles");
     app.UseHsts();
 }
 
@@ -32,7 +32,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
+    pattern: "{controller=Automoviles}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 app.Run();

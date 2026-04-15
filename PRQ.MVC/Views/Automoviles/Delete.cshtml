@@ -1,0 +1,38 @@
+@model AutomovilViewModel
+
+@{
+    ViewData["Title"] = "Eliminar automovil";
+}
+
+<section class="panel">
+    <h1>Eliminar automovil</h1>
+    <p>Confirma si deseas eliminar este automovil.</p>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <dl>
+        <dt>Id</dt>
+        <dd>@Model.Id</dd>
+
+        <dt>Fabricante</dt>
+        <dd>@Model.Fabricante</dd>
+
+        <dt>Color</dt>
+        <dd>@Model.Color</dd>
+
+        <dt>Anio</dt>
+        <dd>@Model.Anio</dd>
+
+        <dt>Tipo</dt>
+        <dd>@Model.Tipo</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post" style="margin-top: 1.25rem;">
+        @Html.AntiForgeryToken()
+        <input asp-for="Id" type="hidden" />
+        <div class="actions">
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+            <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+        </div>
+    </form>
+</section>
