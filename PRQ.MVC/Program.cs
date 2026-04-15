@@ -4,6 +4,9 @@ using PRQ.MVC.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
+builder.Services.Configure<ApiRoutingOptions>(builder.Configuration.GetSection(ApiRoutingOptions.SectionName));
+builder.Services.AddScoped<IApiRequestSourceResolver, ApiRequestSourceResolver>();
 
 builder.Services.AddHttpClient<IApiService, ApiService>((serviceProvider, client) =>
 {

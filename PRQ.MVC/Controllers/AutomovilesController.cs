@@ -7,6 +7,71 @@ namespace PRQ.MVC.Controllers;
 
 public class AutomovilesController(IApiService apiService) : Controller
 {
+    [ApiSourceFeature("AutomovilesMaestroDetalle")]
+    [HttpGet]
+    public IActionResult MaestroDetalle()
+    {
+        return View();
+    }
+
+    [ApiSourceFeature("AutomovilesMaestroDetalle")]
+    [HttpGet]
+    public async Task<IActionResult> BuscarPorTipo(string tipo)
+    {
+        if (string.IsNullOrWhiteSpace(tipo))
+        {
+            return BadRequest(new { message = "Debe seleccionar un tipo." });
+        }
+
+        try
+        {
+            var automoviles = await apiService.GetAsync<List<AutomovilViewModel>>(
+                $"automoviles/filter/tipo?value={Uri.EscapeDataString(tipo)}") ?? [];
+
+            return Json(automoviles);
+        }
+        catch (HttpRequestException ex)
+        {
+            return StatusCode((int?)ex.StatusCode ?? 500, new { message = ex.Message });
+        }
+    }
+
+    [ApiSourceFeature("AutomovilesMaestroDetalle")]
+    [HttpGet]
+    public async Task<IActionResult> BuscarIngresos(int automovilId, string tipo)
+    {
+        if (automovilId <= 0)
+        {
+            return BadRequest(new { message = "Debe seleccionar un automovil valido." });
+        }
+
+        if (string.IsNullOrWhiteSpace(tipo))
+        {
+            return BadRequest(new { message = "Debe seleccionar un tipo." });
+        }
+
+        try
+        {
+            var start = new DateTime(2000, 1, 1).ToString("O");
+            var end = new DateTime(2100, 12, 31).ToString("O");
+
+            var ingresos = await apiService.GetAsync<List<IngresoViewModel>>(
+                $"ingresos/query/tipo?value={Uri.EscapeDataString(tipo)}&start={Uri.EscapeDataString(start)}&end={Uri.EscapeDataString(end)}") ?? [];
+
+            var filtrados = ingresos
+                .Where(ingreso => ingreso.AutomovilId == automovilId)
+                .OrderByDescending(ingreso => ingreso.FechaEntrada)
+                .ToList();
+
+            return Json(filtrados);
+        }
+        catch (HttpRequestException ex)
+        {
+            return StatusCode((int?)ex.StatusCode ?? 500, new { message = ex.Message });
+        }
+    }
+
+    [ApiSourceFeature("AutomovilesCrud")]
     [HttpGet]
     public async Task<IActionResult> Index(int? anioInferior, int? anioSuperior)
     {
@@ -41,6 +106,7 @@ public class AutomovilesController(IApiService apiService) : Controller
         return View(automoviles);
     }
 
+    [ApiSourceFeature("AutomovilesCrud")]
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
@@ -48,12 +114,14 @@ public class AutomovilesController(IApiService apiService) : Controller
         return automovil is null ? NotFound() : View(automovil);
     }
 
+    [ApiSourceFeature("AutomovilesCrud")]
     [HttpGet]
     public IActionResult Create()
     {
         return View(new AutomovilViewModel());
     }
 
+    [ApiSourceFeature("AutomovilesCrud")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(AutomovilViewModel automovil)
@@ -75,6 +143,7 @@ public class AutomovilesController(IApiService apiService) : Controller
         }
     }
 
+    [ApiSourceFeature("AutomovilesCrud")]
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
@@ -82,6 +151,7 @@ public class AutomovilesController(IApiService apiService) : Controller
         return automovil is null ? NotFound() : View(automovil);
     }
 
+    [ApiSourceFeature("AutomovilesCrud")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, AutomovilViewModel automovil)
@@ -112,6 +182,7 @@ public class AutomovilesController(IApiService apiService) : Controller
         }
     }
 
+    [ApiSourceFeature("AutomovilesCrud")]
     [HttpGet]
     public async Task<IActionResult> Delete(int id)
     {
@@ -119,6 +190,7 @@ public class AutomovilesController(IApiService apiService) : Controller
         return automovil is null ? NotFound() : View(automovil);
     }
 
+    [ApiSourceFeature("AutomovilesCrud")]
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)

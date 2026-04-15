@@ -1,0 +1,72 @@
+@{
+    ViewData["Title"] = "Maestro detalle";
+}
+
+<section class="panel">
+    <h1 style="margin-top: 0;">Automóviles</h1>
+
+    <div class="filter-form" style="margin-top: 1rem;">
+        <div>
+            <label for="tipoSelect">Tipo</label>
+            <select id="tipoSelect">
+                <option value="">Seleccione un tipo</option>
+                <option value="sedan">sedan</option>
+                <option value="4x4">4x4</option>
+                <option value="moto">moto</option>
+            </select>
+        </div>
+        <div>
+            <button id="consultarBtn" type="button" class="btn">Consultar</button>
+        </div>
+    </div>
+
+    <p id="masterMessage" style="margin-top: 1rem;"></p>
+
+    <table id="automovilesTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fabricante</th>
+                <th>Color</th>
+                <th>Año</th>
+                <th>Tipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="5">Seleccione un tipo y consulte.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="panel" style="margin-top: 1.5rem;">
+    <h2 style="margin-top: 0;">Ingresos</h2>
+    <p id="detailMessage">Seleccione un automóvil para consultar sus ingresos.</p>
+
+    <table id="ingresosTable">
+        <thead>
+            <tr>
+                <th>ParqueoId</th>
+                <th>FechaEntrada</th>
+                <th>FechaSalida</th>
+                <th>DuracionMinutos</th>
+                <th>DuracionHoras</th>
+                <th>MontoTotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="6">No hay datos para mostrar.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<script>
+    window.automovilesMaestroDetalleConfig = {
+        buscarPorTipoUrl: '@Url.Action("BuscarPorTipo", "Automoviles")',
+        buscarIngresosUrl: '@Url.Action("BuscarIngresos", "Automoviles")'
+    };
+</script>
+<script src="~/js/automoviles-maestro-detalle.js"></script>
