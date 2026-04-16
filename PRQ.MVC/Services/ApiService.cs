@@ -44,7 +44,7 @@ public class ApiService(HttpClient httpClient, IApiRequestSourceResolver request
         var request = new HttpRequestMessage(method, url);
         var sourceSelection = requestSourceResolver.ResolveCurrent();
 
-        //request.Headers.TryAddWithoutValidation(sourceSelection.HeaderName, sourceSelection.Source);
+        request.Headers.TryAddWithoutValidation(sourceSelection.HeaderName, sourceSelection.Source);
 
         if (data is not null)
         {
